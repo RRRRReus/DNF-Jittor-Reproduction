@@ -1,0 +1,30 @@
+# Jittor Framework and Core Dependencies
+# 核心Jittor框架
+jittor
+
+# Scientific Computing and Data Handling
+# 科学计算与数据处理库
+numpy==1.21.6         # 基础数值计算库
+Pillow==9.5.0         # 图像处理库 (PIL)
+opencv-python==4.5.5.62 # 更强大的图像/视频处理库
+rawpy==0.17.0         # 用于处理 .ARW 索尼原始图像文件，非常关键！
+imageio==2.9.0        # 用于读写多种格式的图像数据
+
+# Configuration and Experiment Management
+# 实验配置与管理
+PyYAML==6.0           # 用于解析 .yaml 配置文件
+yacs==0.1.8           # 另一个常用的配置管理系统
+tqdm==4.62.3          # 在终端显示优雅的进度条
+
+# Logging and Visualization
+# 日志与可视化
+tensorboardX          # Jittor推荐使用的TensorBoard接口库
+protobuf==3.19.1      # 固定版本以避免依赖冲突
+
+# Tensor Operations and Utilities
+# 张量操作与通用工具
+einops==0.4.0         # 强大的张量操作库，支持Jittor
+tabulate==0.9.0       # 用于在终端打印美观的表格
+termcolor==1.1.0      # 用于在终端显示带颜色的文本
+absl-py==1.4.0        # Google出品的通用Python工具库
+GitPython             # 用于读取git信息
