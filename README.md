@@ -1750,3 +1750,10 @@ output: runs/CVPR_SONY/baseline
 
 ## loss曲线图
 ![loss_curve.png](loss_curve.png)
+
+## psnr曲线图
+![alt text](psnr_curve.png)
+
+
+## ssim曲线图
+![alt text](ssim_curve.png)
