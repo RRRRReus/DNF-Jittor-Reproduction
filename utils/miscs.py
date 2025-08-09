@@ -21,7 +21,8 @@ def load_checkpoint(config, model, optimizer, lr_scheduler, logger, epoch=None):
     # Jittor改动: model.load_state_dict -> model.load
     # Jittor的model.load默认就是strict=False的行为
     all_keys = set(checkpoint['model'].keys())
-    model.load(checkpoint['model'])
+    # model.load(checkpoint['model'])
+    model.load_parameters(checkpoint['model']) # Jittor改动：使用 load_parameters 从字典加载
     logger.info(f"<All keys matched successfully>")
 
     max_psnr = 0.0
@@ -49,7 +50,9 @@ def load_pretrained(config, model, logger):
     state_dict = checkpoint.get('model', checkpoint)
     
     # Jittor改动: model.load_state_dict -> model.load
-    model.load(state_dict)
+    # model.load(state_dict)
+    
+    model.load_parameters(state_dict) # Jittor改动：使用 load_parameters 从字典加载
     logger.info(f"<All keys matched successfully>")
     logger.info(f"=> loaded successfully '{config['train']['pretrained']}'")
 

@@ -6,3 +6,5 @@ __pycache__
 /runs
 .vscode
 /wandb
+draw_loss.py
+/pic
