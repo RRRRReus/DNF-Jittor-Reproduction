@@ -1749,4 +1749,4 @@ output: runs/CVPR_SONY/baseline
 
 
 ## loss曲线图
-![alt text](pic/loss_curve.png)
+![loss_curve.png](loss_curve.png)
