@@ -21,7 +21,7 @@ def train_forward(config, model, data):
 
 @FORWARD_REGISTRY.register(suffix='DNF')
 def test_forward(config, model, data):
-    # Jittor改动: 无需手动.cuda()，也不再需要if/else来区分cpu/gpu
+    # Jittor改动: 无需手动.cuda()
     raw = data['noisy_raw']
     raw_gt = data['clean_raw']
     rgb_gt = data['clean_rgb']

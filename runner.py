@@ -148,6 +148,7 @@ def train_one_epoch(config, train_forward, model, loss_list, data_loader, optimi
         losses = loss_list(outputs, targets)
         loss = sum(losses)
 
+        # debug_fuse_grads_once(model, loss)   # 放在 step 前
         optimizer.step(loss) # Jittor核心改动：一步完成反向传播和更新
 
         # print("一步完成反向传播和更新,loss:", loss.item())
@@ -180,6 +181,29 @@ def train_one_epoch(config, train_forward, model, loss_list, data_loader, optimi
                 f'GradNorm {norm_meter.val:.4f} ({norm_meter.avg:.4f})\t')
               #   f'Mem {memory_used:.0f}MB')
     # ... (tensorboard logging part)
+
+# def debug_fuse_grads_once(model, loss):
+#     if hasattr(model, "_fuse_grad_probed"): 
+#         print("偷摸return")
+#         return
+#     # 取所有 fuse 的 depthwise conv 权重/偏置
+#     ws, bs = [], []
+#     for f in model.feedback_fuses:
+#         # 保证拿到的是 dwconv 里的 depthwise conv（按你的命名就是 [1]）
+#         ws.append(f.dwconv[1].weight)
+#         bs.append(f.dwconv[1].bias)
+
+#     gws = jt.grad(loss, ws, retain_graph=True)
+#     gbs = jt.grad(loss, bs, retain_graph=True)
+
+#     print("\n[Probe] feedback_fuses dwconv grads (mean|abs):")
+#     for i,(gw,gb) in enumerate(zip(gws, gbs)):
+#         gm = float(gw.abs().mean())
+#         bm = float(gb.abs().mean())
+#         print(f"  fuse[{i}] dw.weight={gm:.3e}  dw.bias={bm:.3e}")
+#     model._fuse_grad_probed = True
+
+
 
 def validate(config, test_forward, model, loss_list, data_loader, epoch, writer):
     with jt.no_grad():

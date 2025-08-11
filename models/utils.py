@@ -9,8 +9,8 @@ class LayerNorm(nn.Module):
     """
     def __init__(self, normalized_shape, eps=1e-6, data_format="channels_last"):
         super().__init__()
-        self.weight = nn.Parameter(jt.ones(normalized_shape))
-        self.bias = nn.Parameter(jt.zeros(normalized_shape))
+        self.weight = jt.ones(normalized_shape)
+        self.bias = jt.zeros(normalized_shape)
         self.eps = eps
         self.data_format = data_format
         if self.data_format not in ["channels_last", "channels_first"]:

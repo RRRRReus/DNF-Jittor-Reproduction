@@ -37,6 +37,7 @@ class GFM(nn.Module):
         # Jittor改动: torch.cat -> jt.concat
         x = jt.concat(inp_feats, dim=1)
         x = self.pwconv(x)
+        x = self.dwconv(x)                       # ✅ 关键补上这一步
         # Jittor改动: .chunk在Jittor中同样可用
         x1, x2 = jt.chunk(x, 2, dim=1)
         # Jittor改动: F.gelu -> jt.nn.gelu

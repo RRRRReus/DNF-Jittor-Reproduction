@@ -13,7 +13,7 @@ class MCC(nn.Module):
 
         self.num_heads = num_heads
         # Jittor改动: 使用jt.ones创建Parameter
-        self.temperature = nn.Parameter(jt.ones((num_heads, 1, 1)))
+        self.temperature = jt.ones((num_heads, 1, 1))
         self.pwconv = nn.Conv2d(f_number, f_number * 3, kernel_size=1, bias=bias)
         self.dwconv = conv_with_padding_mode(f_number * 3, f_number * 3, 3, 1, 1, bias=bias, padding_mode=padding_mode, groups=f_number * 3)
         self.project_out = nn.Conv2d(f_number, f_number, kernel_size=1, bias=bias)

@@ -19,7 +19,7 @@ _dataset_modules = [importlib.import_module(f'datasets.{file_name}') for file_na
 
 
 def build_dataset(dataset_cfg, split: str):
-    # Jittor改动说明：这个函数负责解析配置并从注册器获取Dataset类，与框架无关，无需改动
+    # 无需改动，这个函数负责解析配置并从注册器获取Dataset类，与框架无关，无需改动
     assert split.upper() in ['TRAIN', 'VALID', 'TEST']
 
     # 为了安全深拷贝一下
